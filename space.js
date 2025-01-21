@@ -56,8 +56,20 @@ window.onload = function(){
     alienImage = new Image();
     alienImage.src = './alien.png'
     createAliens();
+    
 
     requestAnimationFrame(update);
     document.addEventListener("keydown", moveShip);
     document.addEventListener("keyup", shoot);
+}
+
+
+function moveShip(e){
+    if(gameOver) return;
+    if(e.code == "ArrowLeft" && ship.x - shipVelocityX >= 0){
+        ship.x -= shipVelocityX;
+    }
+    if(e.code == "ArrowRight" && ship.x + shipVelocityX + ship.width <= board.width){
+        ship.x += shipVelocityX;
+    }
 }
