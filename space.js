@@ -62,6 +62,44 @@ function update(){
     context.fillText(`Score: ${score}`, 5, 20);
 }
 
+function createAliens() {
+    for (let c = 0; c < alienColums; c++) {
+        for (let r = 0; r < alienRows; r++) {
+            let alienImage = new Image(); 
+            
+            let color = Math.round((Math.random() * 100) % 3) + 1;
+            switch (color) {
+                case 1:
+                    alienImage.src = "./alien.png";
+                    break;
+                case 2:
+                    alienImage.src = "./alien-cyan.png";
+                    break;
+                case 3:
+                    alienImage.src = "./alien-yellow.png";
+                    break;
+                case 4:
+                    alienImage.src = "./alien-magenta.png";
+                    break;
+                default:
+                    break;
+            }
+            
+            console.log(color);
+            let alien = {
+                img: alienImage,
+                x: alienX + c * alienWidth,
+                y: alienY + r * alienHeight,
+                width: alienWidth,
+                height: alienHeight,
+                alive: true
+            };
+            alienArray.push(alien);
+        }
+    }
+    alienCount = alienArray.length;
+}
+
 function shoot(e){
     if(gameOver) return;
 
